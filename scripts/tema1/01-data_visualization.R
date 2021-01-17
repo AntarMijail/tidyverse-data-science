@@ -1,11 +1,15 @@
-#Data Visualization - 11 de Mayo de 2018
+#Data Visualization - 17 de enero de 2021
 library(tidyverse)
 
-#tidyverse 1.2.1 ──
-#✔ ggplot2 2.2.1     ✔ purrr   0.2.4
-#✔ tibble  1.4.2     ✔ dplyr   0.7.4
-#✔ tidyr   0.8.0     ✔ stringr 1.3.1
-#✔ readr   1.1.1     ✔ forcats 0.3.0
+#tidyverse 1.2.1
+#  -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+#  v ggplot2 3.3.3     v purrr   0.3.4
+#  v tibble  3.0.4     v dplyr   1.0.2
+#  v tidyr   1.1.2     v stringr 1.4.0
+#  v readr   1.4.0     v forcats 0.5.0
+#  -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+#    x dplyr::filter() masks stats::filter()
+#  x dplyr::lag()    masks stats::lag()
 
 #Los coches con motor más grande consumen más combustible 
 #que los coches con motor más pequeño.
@@ -22,12 +26,14 @@ ggplot(data = mpg)
 mpg %>% ggplot()
 
 
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy))
+ggplot(data = mpg) + #primera capa, solo son los datos, si hacemos el plot de esto solo crea un gr�fico gris
+  geom_boxplot(mapping = aes(x = displ, y = class)) #Esta segunda capa indicamos el TIPO de gr�fico <geom_????> con el que queremos representar nuestros datos
+                                                #esta capa necesita una argumento de "mapping", esto es de que manera se van a mapear nuestos datos
+                                                #aparte del maping tenemos el aestetic---> aes, en donde indicamos cuales ser�n nuestros ejes X,Y  
 
-#PLANTILLA PARA HACER UNA REPRESENTACIÓN GRÁFICA CON GGPLOT
+#PLANTILLA PARA HACER UNA REPRESENTACION GRAFICA CON GGPLOT -> Esto es �til para el curso de DataViz
 #ggplot(data = <DATA_FRAME>) +
-#  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+#  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>), color = <algun dato categorico>)
 
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = class, y = drv))
@@ -36,7 +42,7 @@ ggplot(data = mpg) +
 
 #Color de los puntos
 ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+  geom_point(mapping = aes(x = displ, y = hwy, color = year))
 
 #Tamaño de los puntos (conviene que sea numérico)
 ggplot(data = mpg) +
